@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:true}));//we use a middleware because we wa
 
 app.use('/api',apiRoutes);
 
-app.listen(ServerConfig.PORT,async(rq,res) =>{
+app.listen(ServerConfig.PORT,async(req,res) =>{
     console.log(`Server is listening at port ${ServerConfig.PORT}`);
     CRON();
     await Queue.connectQueue();
