@@ -84,7 +84,6 @@ async function makePayment(data) {
         `${ServerConfig.FLIGHT_SERVICE}/api/v1/flights/${bookingDetails.flightId}`
       );
       const flightData = flight.data.data;
-      console.log(email);
     Queue.sendData({
       recepientEmail: email,
       text: "Your flight is booked.",
@@ -122,9 +121,8 @@ async function cancelBooking(bookingId) {
       { status: CANCELLED },
       transaction
     );
-
     const userData = await axios.get(
-      `${ServerConfig.USER_SERVICE}/api/v1/user/${data.userId}`
+      `${ServerConfig.USER_SERVICE}/api/v1/user/${bookingDetails.userId}`
     );
     const email = userData.data.data.email;
     const flight = await axios.get(
