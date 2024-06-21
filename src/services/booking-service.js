@@ -8,7 +8,6 @@ const { Enums } = require("../utils/common");
 const { CANCELLED, BOOKED } = Enums.BOOKING_STATUS;
 
 const bookingRepository = new BookingRepository();
-const userRepository = new UserRepository();
 
 async function createBooking(data) {
   const transaction = await db.sequelize.transaction();
