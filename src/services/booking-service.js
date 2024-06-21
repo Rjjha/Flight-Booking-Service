@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { StatusCodes } = require("http-status-codes");
-const { BookingRepository, UserRepository } = require("../repositories");
+const { BookingRepository} = require("../repositories");
 const { ServerConfig, Queue } = require("../config");
 const db = require("../models");
 const AppError = require("../utils/errors/app-error");
