@@ -55,7 +55,7 @@ async function makePayment(data) {
     const currentTime = new Date();
     if (currentTime - bookingTime > 300000) {
       await cancelBooking(data.bookingId);
-      throw new AppError("The booking has expired", StatusCodes.BAD_REQUEST);
+      throw new AppError("The booking has expired there", StatusCodes.BAD_REQUEST);
     }
     if (bookingDetails.totalCost != data.totalCost) {
       throw new AppError(
@@ -92,7 +92,7 @@ async function makePayment(data) {
       arrival: flightData.arrivalTime,
       departure: flightData.departureTime,
       bookingId: bookingDetails.id,
-      seats: bookingDetails.noOfSeats,
+      seats: bookingDetails.noofSeats,
     });
     await transaction.commit();
   } catch (error) {
@@ -132,12 +132,12 @@ async function cancelBooking(bookingId) {
     Queue.sendData({
       recepientEmail: email,
       text: "Your Booking has been cancelled",
-      subject: `Cancellation : Your flight has been cancelled for Booking-Id : ${data.bookingId}`,
+      subject: `Cancellation : Your flight has been cancelled for Booking-Id : ${bookingDetails.bookingId}`,
       status: "CANCELLED",
       arrival: flightData.arrivalTime,
       departure: flightData.departureTime,
       bookingId: bookingDetails.id,
-      seats: bookingDetails.noOfSeats,
+      seats: bookingDetails.noofSeats,
     });
     await transaction.commit();
   } catch (error) {
